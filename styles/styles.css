@@ -1,0 +1,9 @@
+.tourneyDiv {
+    position: relative;
+    display: inline-block;
+    width: 250px;
+}
+.tourneyDiv img {
+
+    width: 100%;
+}
