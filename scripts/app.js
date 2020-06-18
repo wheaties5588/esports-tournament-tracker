@@ -14,9 +14,20 @@ var psKey = "RtNbglsDqX2pPUZIyGNsGqkWqXozcjYULHffv0Okx2HQidOPryc";
 var psPARAM = "/tournaments/upcoming";
 
 //Choose how many items are pulled
-var perPage = "?per_page=80";
+var perPage = "?per_page=20";
 
-var psURL = "https://cors-anywhere.herokuapp.com/https://api.pandascore.co" + psPARAM + perPage  + "&search[slug]=dota-2" + "&token=" + psKey;
+// Slugs that pull certain games:
+// dota-2
+// rl
+// league-of-legends
+// cs-go
+// cod-mw
+// pubg
+
+
+var slug = "&search[slug]=league-of-legends";
+
+var psURL = "https://cors-anywhere.herokuapp.com/https://api.pandascore.co" + psPARAM + perPage + slug + "&token=" + psKey;
 
 
 
