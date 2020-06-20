@@ -3,10 +3,10 @@
 #### Created On: 06/20/2020
 ​
 #### Creators
-Matt Wieciech  
-Jason Cruz  
-Brandon Perez  
-Andrew Raines  
+Matt Wieciech- html/css/js/YouTube api
+Jason Cruz- html/css/js/bulma api/PowerPoint
+Brandon Perez- html/css/js
+Andrew Raines- html/css/js/PandaScore api
 ​
 ## Description
 An app allows you to view tournament info for you favorite esports games including League of Legends, Dota 2, CS GO, and Rocket League.
@@ -15,6 +15,11 @@ An app allows you to view tournament info for you favorite esports games includi
 ​
 Select your game of choice, see upcoming tournament info. See videos from YouTube for you favorite game.  
 ​
+## Mockup
+![Main Page](https://github.com/wheaties5588/esports-tournament-tracker/blob/RainesBranch/images/Main%20page%20Wireframe.png)
+
+![Esport selected page](https://github.com/wheaties5588/esports-tournament-tracker/blob/RainesBranch/images/selectedEsport%20Wireframe.png)
+
 ## Known Bugs
 ​
 NA
@@ -23,7 +28,7 @@ NA
 ​
 matt.wieciech@gmail.com  
 jasoncruz_rocks@yahoo.com  
-brandonp940@gmail.com 
+brandonp940@gmail.com  
 rainesand26@gmail.com  
 ​
 ## Technologies Used
@@ -34,7 +39,7 @@ CSS
 PandaScore API  
 YouTube API  
 Twitch API(maybe)  
-Bulma/Materialize/Semantic UI Framework  
+Bulma/Framework  
 ​
 ## Contribution Guidlines 
 ​
