@@ -16,7 +16,7 @@ An app allows you to view tournament info for you favorite esports games includi
 Select your game of choice, see upcoming tournament info. See videos from YouTube for you favorite game.  
 ​
 ## Mockup
-![Main Page](/images/Main page Wireframe.png)
+![Main Page](https://github.com/wheaties5588/esports-tournament-tracker/blob/RainesBranch/images/Main%20page%20Wireframe.png)
 
 ## Known Bugs
 ​
