@@ -28,7 +28,7 @@ NA
 ​
 matt.wieciech@gmail.com  
 jasoncruz_rocks@yahoo.com  
-brandonp940@gmail.com 
+brandonp940@gmail.com  
 rainesand26@gmail.com  
 ​
 ## Technologies Used
