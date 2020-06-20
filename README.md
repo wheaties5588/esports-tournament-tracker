@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-# esports-tournament-tracker
-=======
 # Esports Tournament Tracker
 ​
 #### Created On: 06/20/2020
@@ -49,4 +46,3 @@ Direct link to site:
 Copyright(c) 2020 By Matthew Wieciech
 ​
 This software is licensed under MIT license.
->>>>>>> c9bc16dfc44dbc8f01a1f69ff1d0bf9f94be99a2
