@@ -18,6 +18,8 @@ Select your game of choice, see upcoming tournament info. See videos from YouTub
 ## Mockup
 ![Main Page](https://github.com/wheaties5588/esports-tournament-tracker/blob/RainesBranch/images/Main%20page%20Wireframe.png)
 
+![Esport selected page](https://github.com/wheaties5588/esports-tournament-tracker/blob/RainesBranch/images/selectedEsport%20Wireframe.png)
+
 ## Known Bugs
 ​
 NA
