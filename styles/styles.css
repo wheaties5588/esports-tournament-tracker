@@ -25,3 +25,15 @@ p {
 h3 {
     color: whitesmoke;
 }
+
+.vidDiv {
+    display: flex;
+    flex-direction: column;
+    width: 33.33%;
+}
+
+.dotaYT {
+    display: flex;
+    flex-wrap: wrap;
+}
+
