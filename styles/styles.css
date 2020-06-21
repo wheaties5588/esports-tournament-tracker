@@ -1,11 +1,27 @@
 
-
 .tourneyDiv {
+    color: white;
     position: relative;
     display: inline-block;
     width: 250px;
 }
 .tourneyDiv img {
-
     width: 100%;
+}
+
+html { 
+    background-image: url(../images/stadiumAudiencePixabay.jpg);
+    background-position: center center;
+    background-repeat:  no-repeat;
+    background-attachment: fixed;
+    background-size:  cover;
+    background-color: #999;
+}
+
+p {
+    color: whitesmoke;
+}
+
+h3 {
+    color: whitesmoke;
 }
