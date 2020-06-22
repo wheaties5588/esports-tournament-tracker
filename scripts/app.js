@@ -8,13 +8,13 @@ $(document).ready(function () {
 var psKey = "RtNbglsDqX2pPUZIyGNsGqkWqXozcjYULHffv0Okx2HQidOPryc";
 
 //Must be a valid api param from PandaScore
-// var psPARAM = "/teams";
+var psPARAM = "/lol/teams";
 // var psPARAM = "/leagues";
 // var psPARAM = "/tournaments";
-var psPARAM = "/tournaments/upcoming";
+// var psPARAM = "/tournaments/upcoming";
 
 //Choose how many items are pulled
-var perPage = "?per_page=20";
+var perPage = "?per_page=10";
 
 // Slugs that pull certain games:
 // dota-2
@@ -25,9 +25,9 @@ var perPage = "?per_page=20";
 // pubg
 
 
-var slug = "&search[slug]=league-of-legends";
+var slug = "&search[slug]=team-liquid";
 
-var psURL = "https://cors-anywhere.herokuapp.com/https://api.pandascore.co" + psPARAM + perPage + slug + "&token=" + psKey;
+var psURL = "https://cors-anywhere.herokuapp.com/https://api.pandascore.co" + psPARAM + perPage + "&token=" + psKey;
 
 
 
@@ -38,16 +38,6 @@ $.ajax({
     console.log((response));
     $.map(response, function(i) {
         console.log(i);
-        var div = $("<div>");
-        div.attr("id", "tourneyDiv");
-        div.addClass("tourneyDiv");
-        var tournyImg = $("<img>");
-        tournyImg.attr("src", i.league.image_url);
-        div.append(tournyImg);
-        
-        div.append($("<p>").text("League: " + i.league.name));
-        div.append($("<p>").text("Stage: " + i.name));
-        mainDiv.append(div);
         
     })
 

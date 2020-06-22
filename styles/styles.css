@@ -26,14 +26,31 @@ h3 {
     color: whitesmoke;
 }
 
-.vidDiv {
-    display: flex;
-    flex-direction: column;
-    width: 33.33%;
-}
-
-.dotaYT {
+.twitchDiv {
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.twitchLink {
+    background-color: black;
+    color: white;
+    display: inline-flex;
+    width: 23%;
+    margin: 2% 0% 0% 0%;
+    padding: 8px;
+}
+.twitchLink:hover {
+    color: white;
+}
+
+.streamTitle {
+    font-size: 16px;
+    font-weight: bold;
+    
+}
+
+.streamDescription {
+    font-size: 12px; 
 }
 
