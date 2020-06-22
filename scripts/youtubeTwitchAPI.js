@@ -48,8 +48,7 @@ $(document).ready(function () {
     
     //Twitch API
     
-    function getTwitchStreams(game, amount) {
-        var streamArr = [];
+    function getTwitchStreams(game, amount, placement) {
         var twitchQuery = game;
         var twitchLimit = amount; 
         var twitchStreams = "https://cors-anywhere.herokuapp.com/https://api.twitch.tv/kraken/streams/?game=" + twitchQuery + "&limit=" + twitchLimit  + "&api_version=5&language=en";
@@ -61,15 +60,14 @@ $(document).ready(function () {
             url: twitchStreams,
             headers: {"Client-ID": twitchId}
         }).then(function(res) {
-            renderTwitchStreams(res);
+            renderTwitchStreams(res, placement);
         });
      
     }
     
     
     //Render streams for Dota
-    function renderTwitchStreams(arr) {
-        var dotaDiv = $("#dotaTwitchDiv");
+    function renderTwitchStreams(arr, placement) {
         var streamsArr = arr;
         
         console.log(streamsArr.streams[0]);
@@ -103,13 +101,18 @@ $(document).ready(function () {
             div.append(description);
             
             anchor.append(div);
-            dotaDiv.append(anchor);
+            placement.append(anchor);
             
         }
         
     }
     
-   getTwitchStreams("Dota 2", 8);
+    //Calling the twich streams function for each game
+   getTwitchStreams("Dota 2", 8, $("#dotaTwitchDiv"));
+   getTwitchStreams("Overwatch", 8, $("#overwatchTwitchDiv"));
+   getTwitchStreams("League of Legends", 8, $("#lolTwitchDiv"));
+   
+   
 
     
 });
