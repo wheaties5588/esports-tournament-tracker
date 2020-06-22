@@ -48,25 +48,68 @@ $(document).ready(function () {
     
     //Twitch API
     
-    //var twitchQuery = "Overwatch";
-    var twitchQuery = "Dota 2";
-    var twitchSearchStreams = "https://cors-anywhere.herokuapp.com/https://api.twitch.tv/kraken/streams/?game=" + twitchQuery + "&api_version=5&limit=10&language=en";
+    function getTwitchStreams(game, amount) {
+        var streamArr = [];
+        var twitchQuery = game;
+        var twitchLimit = amount; 
+        var twitchStreams = "https://cors-anywhere.herokuapp.com/https://api.twitch.tv/kraken/streams/?game=" + twitchQuery + "&limit=" + twitchLimit  + "&api_version=5&language=en";
+        
+        var twitchId = "5im67pxtrmahhr4u8f270ntw5l5srp";
+        
+        $.ajax({
+            type: "GET",
+            url: twitchStreams,
+            headers: {"Client-ID": twitchId}
+        }).then(function(res) {
+            renderTwitchStreams(res);
+        });
+     
+    }
     
-    var twitchSearchGames = "https://cors-anywhere.herokuapp.com/https://api.twitch.tv/kraken/search/games?query=" + twitchQuery + "&api_version=5";
     
-    var twitchSearchChannels = "https://cors-anywhere.herokuapp.com/https://api.twitch.tv/kraken/search/channels?query=" + twitchQuery + "&api_version=5";
-    
-    var twitchId = "5im67pxtrmahhr4u8f270ntw5l5srp";
-    
-    $.ajax({
-        type: "GET",
-        url: twitchSearchStreams,
-        headers: {"Client-ID": twitchId},
-        success: function (json) {
-        console.log(json);
+    //Render streams for Dota
+    function renderTwitchStreams(arr) {
+        var dotaDiv = $("#dotaTwitchDiv");
+        var streamsArr = arr;
+        
+        console.log(streamsArr.streams[0]);
+        
+        for (i = 0; i < streamsArr.streams.length; i++) {
+            var anchor = $("<a>");
+            var div = $("<div>");
+            var img = $("<img>");
+            var title = $("<h5>");
+            var description = $("<p>");
+            
+            title.addClass("streamTitle");
+            title.text(streamsArr.streams[i].channel.display_name);
+            
+            description.addClass("streamDescription");
+            description.text(streamsArr.streams[i].channel.status);
+            
+            
+            anchor.addClass("twitchLink");
+            anchor.attr("href", streamsArr.streams[i].channel.url);
+            anchor.attr("target", "_blank");
+            
+            div.addClass("twitchStreamDiv");
+            
+            img.addClass("streamImg");
+            img.attr("src", streamsArr.streams[i].preview.medium);
+            
+            
+            div.append(img);
+            div.append(title);
+            div.append(description);
+            
+            anchor.append(div);
+            dotaDiv.append(anchor);
+            
         }
-    });
-
+        
+    }
     
+   getTwitchStreams("Dota 2", 8);
+
     
 });
