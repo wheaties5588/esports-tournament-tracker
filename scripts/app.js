@@ -1,15 +1,3 @@
-// Header/Burger Menu Functionality
-(function() {
-    var burger = document.querySelector('.burger');
-    var nav = document.querySelector('#'+burger.dataset.target);
-
-    burger.addEventListener('click', function() {
-        burger.classList.toggle('is-active');
-        nav.classList.toggle('is-active');
-    })
-})();
-// End Header/Burger Menu Functionality
-
 $(document).ready(function () {
     
     console.log("Heyoooooo");
@@ -52,7 +40,7 @@ $.ajax({
         console.log(i);
         var div = $("<div>");
         div.attr("id", "tourneyDiv");
-        div.addClass("tourneyDiv column");
+        div.addClass("tourneyDiv");
         var tournyImg = $("<img>");
         tournyImg.attr("src", i.league.image_url);
         div.append(tournyImg);
