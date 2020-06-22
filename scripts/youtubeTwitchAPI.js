@@ -47,7 +47,6 @@ $(document).ready(function () {
     
     
     //Twitch API
-    
     function getTwitchStreams(game, amount, placement) {
         var twitchQuery = game;
         var twitchLimit = amount; 
@@ -62,15 +61,11 @@ $(document).ready(function () {
         }).then(function(res) {
             renderTwitchStreams(res, placement);
         });
-     
     }
-    
-    
+      
     //Render streams for Dota
     function renderTwitchStreams(arr, placement) {
         var streamsArr = arr;
-        
-        console.log(streamsArr.streams[0]);
         
         for (i = 0; i < streamsArr.streams.length; i++) {
             var anchor = $("<a>");
@@ -85,7 +80,6 @@ $(document).ready(function () {
             description.addClass("streamDescription");
             description.text(streamsArr.streams[i].channel.status);
             
-            
             anchor.addClass("twitchLink");
             anchor.attr("href", streamsArr.streams[i].channel.url);
             anchor.attr("target", "_blank");
@@ -95,14 +89,12 @@ $(document).ready(function () {
             img.addClass("streamImg");
             img.attr("src", streamsArr.streams[i].preview.medium);
             
-            
             div.append(img);
             div.append(title);
             div.append(description);
             
             anchor.append(div);
-            placement.append(anchor);
-            
+            placement.append(anchor); 
         }
         
     }
@@ -112,7 +104,4 @@ $(document).ready(function () {
    getTwitchStreams("Overwatch", 8, $("#overwatchTwitchDiv"));
    getTwitchStreams("League of Legends", 8, $("#lolTwitchDiv"));
    
-   
-
-    
 });
