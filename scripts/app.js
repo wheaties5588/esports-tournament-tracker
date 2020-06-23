@@ -5,16 +5,16 @@ $(document).ready(function () {
     var mainDiv = $("#mainDiv");
     
 
-var psKey = "RtNbglsDqX2pPUZIyGNsGqkWqXozcjYULHffv0Okx2HQidOPryc";
+
 
 //Must be a valid api param from PandaScore
-var psPARAM = "/lol/teams";
+
 // var psPARAM = "/leagues";
 // var psPARAM = "/tournaments";
 // var psPARAM = "/tournaments/upcoming";
 
 //Choose how many items are pulled
-var perPage = "?per_page=10";
+
 
 // Slugs that pull certain games:
 // dota-2
@@ -25,69 +25,35 @@ var perPage = "?per_page=10";
 // pubg
 
 
-var slug = "&search[slug]=team-liquid";
-
-var psURL = "https://cors-anywhere.herokuapp.com/https://api.pandascore.co" + psPARAM + perPage + "&token=" + psKey;
-
-
-
-$.ajax({
-    url: psURL,
-    method: "GET"
-}).then(function(response) {
-    console.log((response));
-    $.map(response, function(i) {
-        console.log(i);
-        
-    })
-
-}); 
-// andrew's playground
 
 
 
 
+function getTournaments(game, amount, location) {
+    var psKey = "RtNbglsDqX2pPUZIyGNsGqkWqXozcjYULHffv0Okx2HQidOPryc";
+    var psPARAM = game;
+    var perPage = amount;
+    var psURL = "https://cors-anywhere.herokuapp.com/https://api.pandascore.co" + psPARAM + "?per_page=" + perPage + "&token=" + psKey;
+
+    $.ajax({
+        url: psURL,
+        method: "GET"
+    }).then(function(response) {
+        $.map(response, function(game) {
+            console.log(game);
+            
+            $(location).text(game.slug + game.begin_at);
+            $(location).addClass("streamTitle")
+        });
+    });
+    
+
+}
 
 
+getTournaments("/lol/tournaments/upcoming", 2, $("#lolTournamentDiv"));
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// end andrew's playground
 });
     
+
+
