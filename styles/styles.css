@@ -54,3 +54,14 @@ h3 {
     font-size: 12px; 
 }
 
+.matchupDiv {
+    background-color: black;
+    display: block;
+    text-align: center;
+    width: 20%;
+}
+.tourneyDiv {
+    width: 100%;
+    display: flex;
+    flex-flow: wrap;
+}
