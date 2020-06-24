@@ -46,62 +46,11 @@ $(document).ready(function () {
     // }
     
     
-    //Twitch API
-    function getTwitchStreams(game, amount, placement) {
-        var twitchQuery = game;
-        var twitchLimit = amount; 
-        var twitchStreams = "https://cors-anywhere.herokuapp.com/https://api.twitch.tv/kraken/streams/?game=" + twitchQuery + "&limit=" + twitchLimit  + "&api_version=5&language=en";
-        
-        var twitchId = "5im67pxtrmahhr4u8f270ntw5l5srp";
-        
-        $.ajax({
-            type: "GET",
-            url: twitchStreams,
-            headers: {"Client-ID": twitchId}
-        }).then(function(res) {
-            renderTwitchStreams(res, placement);
-        });
-    }
-      
-    //Render streams for Dota
-    function renderTwitchStreams(arr, placement) {
-        var streamsArr = arr;
-        
-        for (i = 0; i < streamsArr.streams.length; i++) {
-            var anchor = $("<a>");
-            var div = $("<div>");
-            var img = $("<img>");
-            var title = $("<h5>");
-            var description = $("<p>");
-            
-            title.addClass("streamTitle");
-            title.text(streamsArr.streams[i].channel.display_name);
-            
-            description.addClass("streamDescription");
-            description.text(streamsArr.streams[i].channel.status);
-            
-            anchor.addClass("twitchLink");
-            anchor.attr("href", streamsArr.streams[i].channel.url);
-            anchor.attr("target", "_blank");
-            
-            div.addClass("twitchStreamDiv");
-            
-            img.addClass("streamImg");
-            img.attr("src", streamsArr.streams[i].preview.medium);
-            
-            div.append(img);
-            div.append(title);
-            div.append(description);
-            
-            anchor.append(div);
-            placement.append(anchor); 
-        }
-        
-    }
+
     
     //Calling the twich streams function for each game
-   getTwitchStreams("Dota 2", 8, $("#dotaTwitchDiv"));
-   getTwitchStreams("Overwatch", 8, $("#overwatchTwitchDiv"));
-   getTwitchStreams("League of Legends", 8, $("#lolTwitchDiv"));
+   
+   
+   
    
 });
