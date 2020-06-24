@@ -4,18 +4,14 @@
 ​
 #### Creators
 Matt Wieciech- html/css/js/Twitch API
-Jason Cruz- html/css/js/Bulma CDN/PowerPoint
+Jason Cruz- html/css/js/Bulma CDN/js/PowerPoint
 Brandon Perez- html/css//Bulma CDN/js
 Andrew Raines- html/css/js/PandaScore API
 ​
-## Description
-An app that allows you to view tournament info for you favorite esports games including League of Legends, Dota 2, CS GO, and Rocket League.
-​
-Our app is tailored to both avid eSports fans as well as those being introduced to the world of competitive video gaming. Beginners can come to learn about the nuances of different games, as well as their top personalities. This is done with the integration of the Twitch API, the platform where most players and tournaments go to broadcast.
+## Description and Features
+Select Difficulty is a mobile-friendly website tailored to both avid eSports fans as well as beginner fans who are open to being introduced to the world of competitive video gaming. Beginners can come to learn about the nuances of different games, watch gaming personalities, and be immersed in the competitive nature of major tournaments. This is done with the integration of the Twitch and PandaScore APIs.
 
-## Features
-​
-Select your game of choice, see upcoming tournament info. See videos from YouTube for you favorite game.  
+The Twitch API allows users to see which broadcasters are live an any given time based on the game they select. The PandaScore API allows us to relay ongoing tournament information for the selected game.
 ​
 ## Mockup
 ![Main Page](https://github.com/wheaties5588/esports-tournament-tracker/blob/RainesBranch/images/Main%20page%20Wireframe.png)
@@ -35,12 +31,13 @@ rainesand26@gmail.com
 ​
 ## Technologies Used
 ​
-Javascript  
+Javascript/jQuery
 HTML5  
 CSS
-Bulma/Framework  
+Bulma CDN  
 PandaScore API  
 Twitch API 
+Moment.js
 ​
 ## Contribution Guidlines 
 ​
