@@ -3,14 +3,16 @@
 #### Created On: 06/20/2020
 ​
 #### Creators
-Matt Wieciech- html/css/js/YouTube api
-Jason Cruz- html/css/js/bulma api/PowerPoint
-Brandon Perez- html/css/js
-Andrew Raines- html/css/js/PandaScore api
+Matt Wieciech- html/css/js/Twitch API
+Jason Cruz- html/css/js/Bulma CDN/PowerPoint
+Brandon Perez- html/css//Bulma CDN/js
+Andrew Raines- html/css/js/PandaScore API
 ​
 ## Description
-An app allows you to view tournament info for you favorite esports games including League of Legends, Dota 2, CS GO, and Rocket League.
+An app that allows you to view tournament info for you favorite esports games including League of Legends, Dota 2, CS GO, and Rocket League.
 ​
+Our app is tailored to both avid eSports fans as well as those being introduced to the world of competitive video gaming. Beginners can come to learn about the nuances of different games, as well as their top personalities. This is done with the integration of the Twitch API, the platform where most players and tournaments go to broadcast.
+
 ## Features
 ​
 Select your game of choice, see upcoming tournament info. See videos from YouTube for you favorite game.  
@@ -35,15 +37,14 @@ rainesand26@gmail.com
 ​
 Javascript  
 HTML5  
-CSS  
-PandaScore API  
-YouTube API  
-Twitch API(maybe)  
+CSS
 Bulma/Framework  
+PandaScore API  
+Twitch API 
 ​
 ## Contribution Guidlines 
 ​
-Direct link to site:
+Direct link to the working product: https://wheaties5588.github.io/esports-tournament-tracker/
 
 ​
 ### License
