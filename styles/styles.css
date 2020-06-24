@@ -57,3 +57,14 @@ h3 {
 .bannerSolo {
     color: white;
 }
+.matchupDiv {
+    background-color: black;
+    display: block;
+    text-align: center;
+    width: 20%;
+}
+.tourneyDiv {
+    width: 100%;
+    display: flex;
+    flex-flow: wrap;
+}
