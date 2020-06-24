@@ -39,12 +39,23 @@ function getTournaments(game, amount, location) {
         url: psURL,
         method: "GET"
     }).then(function(response) {
-        $.map(response, function(game) {
-            console.log(game);
+        for (i = 0; i < response[0].matches.length; i++) {
+            var name = $("<p>").addClass("matchup");
+            var time = $("<p>").addClass("matchupTime");
+            name.text(response[0].matches[i].name);
+            location.append(name);
+        }
+        
+        
+        
+        
+        
+        // $.map(response, function(game) {
+        //     console.log(game);
             
-            $(location).text(game.slug + game.begin_at);
-            $(location).addClass("streamTitle")
-        });
+        //     $(location).text(game.slug + game.begin_at);
+        //     $(location).addClass("streamTitle");
+        // });
     });
     
 
@@ -52,6 +63,7 @@ function getTournaments(game, amount, location) {
 
 
 getTournaments("/lol/tournaments/upcoming", 2, $("#lolTournamentDiv"));
+getTournaments("/dota2/tournaments/upcoming", 2, $("#dotaTournamentDiv"));
 
 });
     
