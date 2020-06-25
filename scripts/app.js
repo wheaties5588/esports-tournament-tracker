@@ -49,10 +49,8 @@ $(document).ready(function () {
                  console.log(response);
                  var ddItem = $("<a>");
                  ddItem.addClass("dropdown-item");
-                 ddItem.text(response[i].serie.full_name);
+                 ddItem.text(response[i].serie.full_name + " - " + response[i].league.name  + " - " + response[i].name);
                  ddItem.attr("tourneyValue", i);
-                 
-                 
                  
                  dropList.append(ddItem);
              }
@@ -65,7 +63,6 @@ $(document).ready(function () {
                 var target = $(ev.target);
                  
                 if (target.hasClass("dropdown-item")){
-                     console.log(target.attr("tourneyValue"));
                      renderMatches(target.attr("tourneyValue"));
                 }
             });
@@ -78,13 +75,12 @@ $(document).ready(function () {
                 var tName = $("<p>");
                 var tUpcomingSub = $("<p>");
                 tourneyName.addClass("tournamentName")
-                tName.text(response[index].serie.full_name);
+                tName.text(response[index].serie.full_name + " - " + response[index].league.name  + " - " + response[index].name);
                 tUpcomingSub.text("Upcoming Matches:");
                 tourneyName.append(tName, tUpcomingSub);
                 location.append(tourneyName);
                 
                 for (i = 0; i < response[index].matches.length; i++) {
-                    // console.log(response[0].matches[i]);
                     var div = $("<div>").addClass("matchupDiv");
                     var name = $("<p>").addClass("matchupName");
                     var time = $("<p>").addClass("matchupTime");
@@ -187,21 +183,21 @@ $(document).ready(function () {
     if (locArr[locArr.length - 1] == "overwatch.html"){
         
         console.log("RU4 overwatch!!!")
-        getTournaments("/ow/tournaments", 5, $("#owTournamentDiv"));
+        getTournaments("/ow/tournaments", 10, $("#owTournamentDiv"));
         getTwitchStreams("Overwatch", 8, $("#overwatchTwitchDiv"));
         
         
     } else if (locArr[locArr.length - 1] == "dota2.html") {
         
         console.log("RU4 DOTAAAAA!!!")
-        getTournaments("/dota2/tournaments/upcoming", 5, $("#dotaTournamentDiv"));
+        getTournaments("/dota2/tournaments", 10, $("#dotaTournamentDiv"));
         getTwitchStreams("Dota 2", 8, $("#dotaTwitchDiv"));
         
         
     } else if (locArr[locArr.length - 1] == "leagueoflegends.html") {
         
         console.log("RU4 LOLLLLLL!!!")
-        getTournaments("/lol/tournaments/upcoming", 5, $("#lolTournamentDiv"));
+        getTournaments("/lol/tournaments", 10, $("#lolTournamentDiv"));
         getTwitchStreams("League of Legends", 8, $("#lolTwitchDiv"));
         
         
