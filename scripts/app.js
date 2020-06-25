@@ -26,8 +26,6 @@ $(document).ready(function () {
     dropdown.toggleClass("is-active");
     });
     
-    
-
     //Get tournaments
     function getTournaments(game, amount, location) {
         var psKey = "RtNbglsDqX2pPUZIyGNsGqkWqXozcjYULHffv0Okx2HQidOPryc";
@@ -45,7 +43,6 @@ $(document).ready(function () {
              var dropList = $("#dropdownContent");
              
              for(i = 0; i < response.length; i++) {
-                 var res = response;
                  console.log(response);
                  var ddItem = $("<a>");
                  ddItem.addClass("dropdown-item");
@@ -54,10 +51,8 @@ $(document).ready(function () {
                  
                  dropList.append(ddItem);
              }
-             
-             
+                 
              //Dropdown item on click evennt to pull tournaments
-             
              $("#dropdownContent").on("click", function(ev) {
                 ev.preventDefault();
                 var target = $(ev.target);
@@ -66,8 +61,7 @@ $(document).ready(function () {
                      renderMatches(target.attr("tourneyValue"));
                 }
             });
-            
-             
+                
             //Populate matches for tournament on click
             function renderMatches(index) {
                 location.html("");
@@ -76,7 +70,13 @@ $(document).ready(function () {
                 var tUpcomingSub = $("<p>");
                 tourneyName.addClass("tournamentName")
                 tName.text(response[index].serie.full_name + " - " + response[index].league.name  + " - " + response[index].name);
-                tUpcomingSub.text("Upcoming Matches:");
+                
+                if (game == "/ow/tournaments"){
+                    tUpcomingSub.text("Matches:");
+                } else {
+                    tUpcomingSub.text("Upcoming Matches:");
+                }
+                
                 tourneyName.append(tName, tUpcomingSub);
                 location.append(tourneyName);
                 
@@ -103,17 +103,9 @@ $(document).ready(function () {
                 
             }
             
+            // Render first series in list on page load
+            renderMatches(0);
             
-            
-            renderMatches();
-            
-            
-            // $.map(response, function(game) {
-            //     console.log(game);
-                
-            //     $(location).text(game.slug + game.begin_at);
-            //     $(location).addClass("streamTitle")
-            // });
         });
     
 }
@@ -172,11 +164,9 @@ $(document).ready(function () {
         }
         
     }
-    
 
 
     // Parse out by URL to run functions
-
     var loc = window.location.href;
     var locArr = loc.split("/");
 
@@ -205,10 +195,5 @@ $(document).ready(function () {
 
 
 
-
-
-
 });
     
-
-
