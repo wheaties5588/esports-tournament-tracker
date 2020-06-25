@@ -117,6 +117,14 @@ $(document).ready(function () {
 
                         }
                     } 
+                    
+                    if (response[index].matches[i].draw) {
+                        winner.text("Winner: Draw");
+                        div.append(winner);
+                    }
+                         
+                    
+                    
                             
                     location.append(div);
                 }
