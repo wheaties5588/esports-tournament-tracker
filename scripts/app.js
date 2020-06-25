@@ -19,6 +19,16 @@ $(document).ready(function () {
 // pubg
 
 
+    // Bulma dropdown fix
+    var dropdown = $(".dropdown");
+    dropdown.on("click", function(event) {
+    event.preventDefault();
+    dropdown.toggleClass("is-active");
+    });
+    
+    
+
+    //Get tournaments
     function getTournaments(game, amount, location) {
         var psKey = "RtNbglsDqX2pPUZIyGNsGqkWqXozcjYULHffv0Okx2HQidOPryc";
         var psPARAM = game;
@@ -29,39 +39,77 @@ $(document).ready(function () {
             url: psURL,
             method: "GET"
         }).then(function(response) {
-            console.log(response);
             
-            var tourneyName = $("<div>");
-            var tName = $("<p>");
-            var tUpcomingSub = $("<p>");
-            tourneyName.addClass("tournamentName")
-            tName.text(response[0].serie.full_name);
-            tUpcomingSub.text("Upcoming Matches:");
-            tourneyName.append(tName, tUpcomingSub);
-            location.append(tourneyName);
+             // Populate dropdown
+             //console.log(response);
+             var dropList = $("#dropdownContent");
+             
+             for(i = 0; i < response.length; i++) {
+                 var res = response;
+                 console.log(response);
+                 var ddItem = $("<a>");
+                 ddItem.addClass("dropdown-item");
+                 ddItem.text(response[i].serie.full_name);
+                 ddItem.attr("tourneyValue", i);
+                 
+                 
+                 
+                 dropList.append(ddItem);
+             }
+             
+             
+             //Dropdown item on click evennt to pull tournaments
+             
+             $("#dropdownContent").on("click", function(ev) {
+                ev.preventDefault();
+                var target = $(ev.target);
+                 
+                if (target.hasClass("dropdown-item")){
+                     console.log(target.attr("tourneyValue"));
+                     renderMatches(target.attr("tourneyValue"));
+                }
+            });
             
-            for (i = 0; i < response[0].matches.length; i++) {
-                // console.log(response[0].matches[i]);
-                var div = $("<div>").addClass("matchupDiv");
-                var name = $("<p>").addClass("matchupName");
-                var time = $("<p>").addClass("matchupTime");
-                var matchDate = $("<p>").addClass("matchupDate");
+             
+            //Populate matches for tournament on click
+            function renderMatches(index) {
+                location.html("");
+                var tourneyName = $("<div>");
+                var tName = $("<p>");
+                var tUpcomingSub = $("<p>");
+                tourneyName.addClass("tournamentName")
+                tName.text(response[index].serie.full_name);
+                tUpcomingSub.text("Upcoming Matches:");
+                tourneyName.append(tName, tUpcomingSub);
+                location.append(tourneyName);
                 
+                for (i = 0; i < response[index].matches.length; i++) {
+                    // console.log(response[0].matches[i]);
+                    var div = $("<div>").addClass("matchupDiv");
+                    var name = $("<p>").addClass("matchupName");
+                    var time = $("<p>").addClass("matchupTime");
+                    var matchDate = $("<p>").addClass("matchupDate");
+                    
+                    
+                    name.text(response[index].matches[i].name)
+                    
+                    var str = response[index].matches[i].begin_at;
+                    var date = moment(str);
+                    var dateComponent = date.utc().format('MM-DD-YYYY');
+                    var timeComponent = date.utc().format('HH:mm:ss');
+        
+                    time.text("Match Time: " + timeComponent);
+                    matchDate.text("Match Date: " + dateComponent);
+                    
+                    div.append(name, matchDate,  time);
+                    location.append(div);
+                }
                 
-                name.text(response[0].matches[i].name)
-                
-                var str = response[0].matches[i].begin_at;
-                var date = moment(str);
-                var dateComponent = date.utc().format('MM-DD-YYYY');
-                var timeComponent = date.utc().format('HH:mm:ss');
-    
-                time.text("Match Time: " + timeComponent);
-                matchDate.text("Match Date: " + dateComponent);
-                
-                div.append(name, matchDate,  time);
-                location.append(div);
             }
             
+            
+            
+            renderMatches();
             
             
             // $.map(response, function(game) {
@@ -128,10 +176,7 @@ $(document).ready(function () {
         }
         
     }
-
-
-
-
+    
 
 
     // Parse out by URL to run functions
