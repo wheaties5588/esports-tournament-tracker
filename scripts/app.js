@@ -1,5 +1,14 @@
 $(document).ready(function () {
 
+    // Mobile Burger Functionality
+    $(".navbar-burger").click(function() {
+  
+    // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+    $(".navbar-burger").toggleClass("is-active");
+    $(".navbar-menu").toggleClass("is-active");  
+    });
+
+
 // PANDASCORE AIP
 //Must be a valid api param from PandaScore
 
@@ -19,32 +28,94 @@ $(document).ready(function () {
 // pubg
 
 
-function getTournaments(game, amount, location) {
-    var psKey = "RtNbglsDqX2pPUZIyGNsGqkWqXozcjYULHffv0Okx2HQidOPryc";
-    var psPARAM = game;
-    var perPage = amount;
-    var psURL = "https://cors-anywhere.herokuapp.com/https://api.pandascore.co" + psPARAM + "?per_page=" + perPage + "&token=" + psKey;
-
-    $.ajax({
-        url: psURL,
-        method: "GET"
-    }).then(function(response) {
-        console.log(response);
-        
-        for (i = 0; i < response[0].matches.length; i++) {
-            // console.log(response[0].matches[i]);
-            var div = $("<div>").addClass("matchupDiv");
-            var name = $("<p>").addClass("matchupName");
-            var time = $("<p>").addClass("matchupTime");
-            
-            
-            name.text(response[0].matches[i].name)
-            time.text(response[0].matches[i].begin_at)
-            
-            div.append(name, time);
-            location.append(div);
-        }
+    // Bulma dropdown fix
+    var dropdown = $(".dropdown");
+    dropdown.on("click", function(event) {
+    event.preventDefault();
+    dropdown.toggleClass("is-active");
     });
+    
+    //Get tournaments
+    function getTournaments(game, amount, location) {
+        var psKey = "RtNbglsDqX2pPUZIyGNsGqkWqXozcjYULHffv0Okx2HQidOPryc";
+        var psPARAM = game;
+        var perPage = amount;
+        var psURL = "https://cors-anywhere.herokuapp.com/https://api.pandascore.co" + psPARAM + "?per_page=" + perPage + "&token=" + psKey;
+
+        $.ajax({
+            url: psURL,
+            method: "GET"
+        }).then(function(response) {
+            
+             // Populate dropdown
+             //console.log(response);
+             var dropList = $("#dropdownContent");
+             
+             for(i = 0; i < response.length; i++) {
+                 console.log(response);
+                 var ddItem = $("<a>");
+                 ddItem.addClass("dropdown-item");
+                 ddItem.text(response[i].serie.full_name + " - " + response[i].league.name  + " - " + response[i].name);
+                 ddItem.attr("tourneyValue", i);
+                 
+                 dropList.append(ddItem);
+             }
+                 
+             //Dropdown item on click evennt to pull tournaments
+             $("#dropdownContent").on("click", function(ev) {
+                ev.preventDefault();
+                var target = $(ev.target);
+                 
+                if (target.hasClass("dropdown-item")){
+                     renderMatches(target.attr("tourneyValue"));
+                }
+            });
+                
+            //Populate matches for tournament on click
+            function renderMatches(index) {
+                location.html("");
+                var tourneyName = $("<div>");
+                var tName = $("<p>");
+                var tUpcomingSub = $("<p>");
+                tourneyName.addClass("tournamentName")
+                tName.text(response[index].serie.full_name + " - " + response[index].league.name  + " - " + response[index].name);
+                
+                if (game == "/ow/tournaments"){
+                    tUpcomingSub.text("Matches:");
+                } else {
+                    tUpcomingSub.text("Upcoming Matches:");
+                }
+                
+                tourneyName.append(tName, tUpcomingSub);
+                location.append(tourneyName);
+                
+                for (i = 0; i < response[index].matches.length; i++) {
+                    var div = $("<div>").addClass("matchupDiv");
+                    var name = $("<p>").addClass("matchupName");
+                    var time = $("<p>").addClass("matchupTime");
+                    var matchDate = $("<p>").addClass("matchupDate");
+                    
+                    
+                    name.text(response[index].matches[i].name)
+                    
+                    var str = response[index].matches[i].begin_at;
+                    var date = moment(str);
+                    var dateComponent = date.utc().format('MM-DD-YYYY');
+                    var timeComponent = date.utc().format('HH:mm:ss');
+        
+                    time.text("Match Time: " + timeComponent);
+                    matchDate.text("Match Date: " + dateComponent);
+                    
+                    div.append(name, matchDate,  time);
+                    location.append(div);
+                }
+                
+            }
+            
+            // Render first series in list on page load
+            renderMatches(0);
+            
+        });
     
 }
 
@@ -65,6 +136,7 @@ function getTournaments(game, amount, location) {
         }).then(function(res) {
             renderTwitchStreams(res, placement);
         });
+   
     }
       
     //Render streams for Dota
@@ -104,44 +176,40 @@ function getTournaments(game, amount, location) {
     }
 
 
+    // Parse out by URL to run functions
+    var loc = window.location.href;
+    var locArr = loc.split("/");
+
+    if (locArr[locArr.length - 1] == "overwatch.html"){
+        
+        console.log("RU4 overwatch!!!")
+        getTournaments("/ow/tournaments", 10, $("#owTournamentDiv"));
+        getTwitchStreams("Overwatch", 8, $("#overwatchTwitchDiv"));
+        
+        
+    } else if (locArr[locArr.length - 1] == "dota2.html") {
+        
+        console.log("RU4 DOTAAAAA!!!")
+        getTournaments("/dota2/tournaments", 10, $("#dotaTournamentDiv"));
+        getTwitchStreams("Dota 2", 8, $("#dotaTwitchDiv"));
+        
+        
+    } else if (locArr[locArr.length - 1] == "leagueoflegends.html") {
+        
+        console.log("RU4 LOLLLLLL!!!")
+        getTournaments("/lol/tournaments", 10, $("#lolTournamentDiv"));
+        getTwitchStreams("League of Legends", 8, $("#lolTwitchDiv"));
+        
+        
+    } else {}
 
 
-
-
-// Parse out by URL to run functions
-
-var loc = window.location.href;
-var locArr = loc.split("/");
-
-if (locArr[locArr.length - 1] == "overwatch.html"){
-    
-    console.log("RU4 overwatch!!!")
-    getTournaments("/ow/tournaments", 2, $("#owTournamentDiv"));
-    getTwitchStreams("Overwatch", 8, $("#overwatchTwitchDiv"));
-    
-    
-} else if (locArr[locArr.length - 1] == "dota2.html") {
-    
-    console.log("RU4 DOTAAAAA!!!")
-    getTournaments("/dota2/tournaments/upcoming", 2, $("#dotaTournamentDiv"));
-    getTwitchStreams("Dota 2", 8, $("#dotaTwitchDiv"));
-    
-    
-} else if (locArr[locArr.length - 1] == "leagueoflegends.html") {
-    
-    console.log("RU4 LOLLLLLL!!!")
-    getTournaments("/lol/tournaments/upcoming", 2, $("#lolTournamentDiv"));
-    getTwitchStreams("League of Legends", 8, $("#lolTwitchDiv"));
-    getPastTournaments("/lol/tournaments/past", 2, );
-    
-} else {}
-
-
-
-
-
+    $("#presentation").click(function (e) { 
+        e.preventDefault();
+        console.log("peepee")
+        getTwitchStreams();
+        
+    });
 
 });
     
-
-
