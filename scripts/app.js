@@ -1,5 +1,14 @@
 $(document).ready(function () {
 
+    // Mobile Burger Functionality
+    $(".navbar-burger").click(function() {
+  
+    // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+    $(".navbar-burger").toggleClass("is-active");
+    $(".navbar-menu").toggleClass("is-active");  
+    });
+
+
 // PANDASCORE AIP
 //Must be a valid api param from PandaScore
 
@@ -135,6 +144,7 @@ $(document).ready(function () {
         }).then(function(res) {
             renderTwitchStreams(res, placement);
         });
+   
     }
       
     //Render streams for Dota
@@ -204,7 +214,12 @@ $(document).ready(function () {
     } else {}
 
 
-
+    $("#presentation").click(function (e) { 
+        e.preventDefault();
+        console.log("peepee")
+        getTwitchStreams();
+        
+    });
 
 
 
