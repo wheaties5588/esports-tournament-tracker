@@ -22,8 +22,12 @@ $(document).ready(function () {
     // Bulma dropdown fix
     var dropdown = $(".dropdown");
     dropdown.on("click", function(event) {
-    event.preventDefault();
+    event.stopPropagation();
     dropdown.toggleClass("is-active");
+    });
+    
+    $(document).click(function(){
+        $(".dropdown").removeClass("is-active");
     });
     
     //Get tournaments
@@ -43,7 +47,7 @@ $(document).ready(function () {
              var dropList = $("#dropdownContent");
              
              for(i = 0; i < response.length; i++) {
-                 // console.log(response);
+                 console.log(response);
                  var ddItem = $("<a>");
                  ddItem.addClass("dropdown-item");
                  ddItem.text(response[i].serie.full_name + " - " + response[i].league.name  + " - " + response[i].name);
@@ -80,6 +84,8 @@ $(document).ready(function () {
                 tourneyName.append(tName, tUpcomingSub);
                 location.append(tourneyName);
                 
+                
+                //Loops through matches for selected tournament and creates div and populates match time, date and winner if available
                 for (i = 0; i < response[index].matches.length; i++) {
                     var div = $("<div>").addClass("matchupDiv");
                     var name = $("<p>").addClass("matchupName");
@@ -105,7 +111,6 @@ $(document).ready(function () {
                         for (x = 0; x < response[index].teams.length; x++) {
                             
                            if (response[index].matches[i].winner_id  == response[index].teams[x].id) {
-                                console.log(response[index].teams[x].name);
                                 winner.text("Winner: " + response[index].teams[x].name);
                                 div.append(winner);
                            }
