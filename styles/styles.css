@@ -15,7 +15,8 @@ html {
     background-repeat:  no-repeat;
     background-attachment: fixed;
     background-size:  cover;
-    background-color: #999;
+    /* background-color: #999; */
+    background-color: #fff;
 }
 
 p {
@@ -87,4 +88,8 @@ h3 {
 
 .matchupDate, .matchupTime, .winner {
     font-size: 12px;
+}
+
+#presentation {
+    cursor: pointer;
 }

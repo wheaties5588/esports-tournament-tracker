@@ -52,11 +52,11 @@ $(document).ready(function () {
         }).then(function(response) {
             
              // Populate dropdown
-             //console.log(response);
+             console.log(response);
              var dropList = $("#dropdownContent");
              
              for(i = 0; i < response.length; i++) {
-                 console.log(response);
+                 // console.log(response);
                  var ddItem = $("<a>");
                  ddItem.addClass("dropdown-item");
                  ddItem.text(response[i].serie.full_name + " - " + response[i].league.name  + " - " + response[i].name);
@@ -178,6 +178,7 @@ $(document).ready(function () {
             url: twitchStreams,
             headers: {"Client-ID": twitchId}
         }).then(function(res) {
+            console.log(res);
             renderTwitchStreams(res, placement);
         });
    
@@ -251,7 +252,8 @@ $(document).ready(function () {
     $("#presentation").click(function (e) { 
         e.preventDefault();
         console.log("peepee")
-        getTwitchStreams();
+        getTournaments("/dota2/tournaments", 10, $("#dotaTournamentDiv"));
+        getTwitchStreams("Dota 2", 8, $("#dotaTwitchDiv"));
         
     });
 
