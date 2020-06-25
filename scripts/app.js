@@ -44,15 +44,6 @@ function getTournaments(game, amount, location) {
             div.append(name, time);
             location.append(div);
         }
-        
-        
-        
-        // $.map(response, function(game) {
-        //     console.log(game);
-            
-        //     $(location).text(game.slug + game.begin_at);
-        //     $(location).addClass("streamTitle")
-        // });
     });
     
 }
@@ -141,7 +132,7 @@ if (locArr[locArr.length - 1] == "overwatch.html"){
     console.log("RU4 LOLLLLLL!!!")
     getTournaments("/lol/tournaments/upcoming", 2, $("#lolTournamentDiv"));
     getTwitchStreams("League of Legends", 8, $("#lolTwitchDiv"));
-    
+    getPastTournaments("/lol/tournaments/past", 2, );
     
 } else {}
 
