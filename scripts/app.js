@@ -237,6 +237,7 @@ $(document).ready(function () {
         console.log("RU4 DOTAAAAA!!!")
         getTournaments("/dota2/tournaments", 10, $("#dotaTournamentDiv"));
         getTwitchStreams("Dota 2", 8, $("#dotaTwitchDiv"));
+
         
         
     } else if (locArr[locArr.length - 1] == "leagueoflegends.html") {
