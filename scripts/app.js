@@ -227,14 +227,14 @@ $(document).ready(function () {
 
     if (locArr[locArr.length - 1] == "overwatch.html"){
         
-        console.log("RU4 overwatch!!!")
+        console.log("RU4 overwatch!!!");
         getTournaments("/ow/tournaments", 10, $("#owTournamentDiv"));
         getTwitchStreams("Overwatch", 8, $("#overwatchTwitchDiv"));
         
         
     } else if (locArr[locArr.length - 1] == "dota2.html") {
         
-        console.log("RU4 DOTAAAAA!!!")
+        console.log("RU4 DOTAAAAA!!!");
         getTournaments("/dota2/tournaments", 10, $("#dotaTournamentDiv"));
         getTwitchStreams("Dota 2", 8, $("#dotaTwitchDiv"));
 
@@ -242,13 +242,13 @@ $(document).ready(function () {
         
     } else if (locArr[locArr.length - 1] == "leagueoflegends.html") {
         
-        console.log("RU4 LOLLLLLL!!!")
+        console.log("RU4 LOLLLLLL!!!");
         getTournaments("/lol/tournaments", 10, $("#lolTournamentDiv"));
         getTwitchStreams("League of Legends", 8, $("#lolTwitchDiv"));
         
         
     } else if (locArr[locArr.length - 1] == "CSGO.html"){
-        console.log("RU4 CSGO")
+        console.log("RU4 CSGO");
         getTournaments("/csgo/tournaments", 10, $("#csgoTournamentDiv"));
         getTwitchStreams("Counter-Strike: Global Offensive", 8, $("#csgoTwitchDiv"));
     } else {}
@@ -256,7 +256,7 @@ $(document).ready(function () {
 
     $("#presentation").click(function (e) { 
         e.preventDefault();
-        console.log("peepee")
+        console.log("peepee");
         getTournaments("/dota2/tournaments", 10, $("#dotaTournamentDiv"));
         getTwitchStreams("Dota 2", 8, $("#dotaTwitchDiv"));
         
