@@ -104,3 +104,52 @@ h3 {
     width: 100%; 
     height: 100%; 
 }
+
+
+.heroBgIndex { 
+    background-image: url(../images/logo.PNG);
+    background-position: center center;
+    background-repeat:  no-repeat;
+    /* background-attachment: fixed; */
+    background-size:  cover;
+    background-color: #999;
+}
+
+.heroText {
+    color: whitesmoke;
+}
+
+.heroBgDota {
+    background-image: url(../images/dota/dotaVengeCrop.png);
+    background-repeat:  no-repeat;
+    background-size:  cover;
+    background-color: #999;
+}
+
+.heroBgLeague {
+    background-image: url(../images/league/league.jpg);
+    background-repeat:  no-repeat;
+    background-size:  cover;
+    background-color: #999;
+}
+
+.heroBgOverwatch {
+    background-image: url(../images/overwatch/ow.jpg);
+    background-repeat:  no-repeat;
+    background-size:  cover;
+    background-color: #999;
+}
+
+.heroBgCsgo {
+    background-image: url(../images/csgo/Vqmtt7k.png);
+    background-repeat:  no-repeat;
+    background-size:  cover;
+    background-color: #999;
+}
+
+.heroBgContact {
+    background-image: url(../images/ourTeam.jpg);
+    background-repeat:  no-repeat;
+    background-size:  cover;
+    background-color: #999;
+}
