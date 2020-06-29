@@ -148,8 +148,16 @@ h3 {
 }
 
 .heroBgContact {
-    background-image: url(../images/ourTeam.jpg);
+    background-image: url(../images/f1.jpg);
     background-repeat:  no-repeat;
     background-size:  cover;
     background-color: #999;
+}
+
+.contactCard {
+    background-color: #12121C;
+}
+
+.contactText {
+    color: #80E2E5;
 }

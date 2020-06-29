@@ -61,7 +61,7 @@ $(document).ready(function () {
                  dropList.append(ddItem);
              }
                  
-             //Dropdown item on click evennt to pull tournaments
+             //Dropdown item on click event to pull tournaments
              $("#dropdownContent").on("click", function(ev) {
                 ev.preventDefault();
                 var target = $(ev.target);
@@ -77,7 +77,9 @@ $(document).ready(function () {
                 var tourneyName = $("<div>");
                 var tName = $("<p>");
                 var tUpcomingSub = $("<p>");
-                tourneyName.addClass("tournamentName")
+                tourneyName.addClass("tournamentName contactCard")
+                tName.addClass("contactText")
+                tUpcomingSub.addClass("contactText")
                 tName.text(response[index].serie.full_name + " - " + response[index].league.name  + " - " + response[index].name);
                 
                 if (game == "/ow/tournaments"){
@@ -91,9 +93,9 @@ $(document).ready(function () {
                 
                 for (i = 0; i < response[index].matches.length; i++) {
                     var div = $("<div>").addClass("matchupDiv");
-                    var name = $("<p>").addClass("matchupName");
-                    var time = $("<p>").addClass("matchupTime");
-                    var matchDate = $("<p>").addClass("matchupDate");
+                    var name = $("<p>").addClass("matchupName contactText");
+                    var time = $("<p>").addClass("matchupTime contactText");
+                    var matchDate = $("<p>").addClass("matchupDate contactText");
                     
                     
                     name.text(response[index].matches[i].name)
