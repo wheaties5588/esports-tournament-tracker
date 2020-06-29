@@ -99,7 +99,7 @@ $(document).ready(function () {
                 //Loops through matches for selected tournament and creates div and populates match time, date and winner if available
                 for (i = 0; i < response[index].matches.length; i++) {
                     var div = $("<div>").addClass("matchupDiv");
-                    var winner = $("<p>").addClass("winner");
+                    var winner = $("<p>").addClass("winner contactText");
                     var name = $("<p>").addClass("matchupName contactText");
                     var time = $("<p>").addClass("matchupTime contactText");
                     var matchDate = $("<p>").addClass("matchupDate contactText");
