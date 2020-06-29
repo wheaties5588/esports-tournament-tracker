@@ -31,8 +31,12 @@ $(document).ready(function () {
     // Bulma dropdown fix
     var dropdown = $(".dropdown");
     dropdown.on("click", function(event) {
-    event.preventDefault();
+    event.stopPropagation();
     dropdown.toggleClass("is-active");
+    });
+    
+    $(document).click(function(){
+        $(".dropdown").removeClass("is-active");
     });
     
     //Get tournaments
@@ -48,11 +52,11 @@ $(document).ready(function () {
         }).then(function(response) {
             
              // Populate dropdown
-             //console.log(response);
+             console.log(response);
              var dropList = $("#dropdownContent");
              
              for(i = 0; i < response.length; i++) {
-                 console.log(response);
+                 // console.log(response);
                  var ddItem = $("<a>");
                  ddItem.addClass("dropdown-item");
                  ddItem.text(response[i].serie.full_name + " - " + response[i].league.name  + " - " + response[i].name);
@@ -61,7 +65,7 @@ $(document).ready(function () {
                  dropList.append(ddItem);
              }
                  
-             //Dropdown item on click evennt to pull tournaments
+             //Dropdown item on click event to pull tournaments
              $("#dropdownContent").on("click", function(ev) {
                 ev.preventDefault();
                 var target = $(ev.target);
@@ -77,7 +81,9 @@ $(document).ready(function () {
                 var tourneyName = $("<div>");
                 var tName = $("<p>");
                 var tUpcomingSub = $("<p>");
-                tourneyName.addClass("tournamentName")
+                tourneyName.addClass("tournamentName contactCard")
+                tName.addClass("contactText")
+                tUpcomingSub.addClass("contactText")
                 tName.text(response[index].serie.full_name + " - " + response[index].league.name  + " - " + response[index].name);
                 
                 if (game == "/ow/tournaments"){
@@ -89,11 +95,14 @@ $(document).ready(function () {
                 tourneyName.append(tName, tUpcomingSub);
                 location.append(tourneyName);
                 
+                
+                //Loops through matches for selected tournament and creates div and populates match time, date and winner if available
                 for (i = 0; i < response[index].matches.length; i++) {
                     var div = $("<div>").addClass("matchupDiv");
-                    var name = $("<p>").addClass("matchupName");
-                    var time = $("<p>").addClass("matchupTime");
-                    var matchDate = $("<p>").addClass("matchupDate");
+                    var winner = $("<p>").addClass("winner contactText");
+                    var name = $("<p>").addClass("matchupName contactText");
+                    var time = $("<p>").addClass("matchupTime contactText");
+                    var matchDate = $("<p>").addClass("matchupDate contactText");
                     
                     
                     name.text(response[index].matches[i].name)
@@ -106,11 +115,49 @@ $(document).ready(function () {
                     time.text("Match Time: " + timeComponent);
                     matchDate.text("Match Date: " + dateComponent);
                     
-                    div.append(name, matchDate,  time);
+                    div.append(name, matchDate, time);
+                    
+                    // Get winner id, if there is one, the loop through teams to get the team name
+                    if (response[index].matches[i].winner_id !== null && typeof response[index].matches[i].winner_id !== "undefined") {
+                  
+                        for (x = 0; x < response[index].teams.length; x++) {
+                            
+                           if (response[index].matches[i].winner_id  == response[index].teams[x].id) {
+                                winner.text("Winner: " + response[index].teams[x].name);
+                                div.append(winner);
+                           }
+
+                        }
+                    } 
+                    
+                    if (response[index].matches[i].draw) {
+                        winner.text("Winner: Draw");
+                        div.append(winner);
+                    }
+                         
+                    
+                    
+                            
                     location.append(div);
                 }
                 
             }
+            
+            // function getWinner(response, match) {
+            //     console.log(response.teams);
+                
+            //     for (i = 0; i < response.teams.length; i++) {
+            //         if (match.winner_id == response.teams[i].id)
+            //         console.log("Winner: " + response.teams[i].name)
+            //     }
+                
+                // if (match.winnerId !== null) {
+                    
+                //     console.log(match.winner_id);
+                //     var winner = $("<p>")
+                // }
+                
+           // }
             
             // Render first series in list on page load
             renderMatches(0);
@@ -134,6 +181,7 @@ $(document).ready(function () {
             url: twitchStreams,
             headers: {"Client-ID": twitchId}
         }).then(function(res) {
+            console.log(res);
             renderTwitchStreams(res, placement);
         });
    
@@ -182,27 +230,28 @@ $(document).ready(function () {
 
     if (locArr[locArr.length - 1] == "overwatch.html"){
         
-        console.log("RU4 overwatch!!!")
+        console.log("RU4 overwatch!!!");
         getTournaments("/ow/tournaments", 10, $("#owTournamentDiv"));
         getTwitchStreams("Overwatch", 8, $("#overwatchTwitchDiv"));
         
         
     } else if (locArr[locArr.length - 1] == "dota2.html") {
         
-        console.log("RU4 DOTAAAAA!!!")
+        console.log("RU4 DOTAAAAA!!!");
         getTournaments("/dota2/tournaments", 10, $("#dotaTournamentDiv"));
         getTwitchStreams("Dota 2", 8, $("#dotaTwitchDiv"));
+
         
         
     } else if (locArr[locArr.length - 1] == "leagueoflegends.html") {
         
-        console.log("RU4 LOLLLLLL!!!")
+        console.log("RU4 LOLLLLLL!!!");
         getTournaments("/lol/tournaments", 10, $("#lolTournamentDiv"));
         getTwitchStreams("League of Legends", 8, $("#lolTwitchDiv"));
         
         
     } else if (locArr[locArr.length - 1] == "CSGO.html"){
-        console.log("RU4 CSGO")
+        console.log("RU4 CSGO");
         getTournaments("/csgo/tournaments", 10, $("#csgoTournamentDiv"));
         getTwitchStreams("Counter-Strike: Global Offensive", 8, $("#csgoTwitchDiv"));
     } else {}
@@ -210,8 +259,9 @@ $(document).ready(function () {
 
     $("#presentation").click(function (e) { 
         e.preventDefault();
-        console.log("peepee")
-        getTwitchStreams();
+        console.log("peepee");
+        getTournaments("/dota2/tournaments", 10, $("#dotaTournamentDiv"));
+        getTwitchStreams("Dota 2", 8, $("#dotaTwitchDiv"));
         
     });
 
