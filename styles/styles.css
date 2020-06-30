@@ -162,3 +162,18 @@ h3 {
 .contactText {
     color: #80E2E5;
 }
+
+.button {
+   width: 1080px;
+   background-color: #12121C;
+   color: #80E2E5;
+}
+
+.dropdown-content{
+    width: 1080px;
+    background-color: black;
+}
+
+.dropdown-item{
+    color: #80E2E5;
+}
