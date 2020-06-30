@@ -250,7 +250,7 @@ $(document).ready(function () {
         getTwitchStreams("League of Legends", 8, $("#lolTwitchDiv"));
         
         
-    } else if (locArr[locArr.length - 1] == "CSGO.html"){
+    } else if ((locArr[locArr.length - 1] == "CSGO.html") || (locArr[locArr.length - 1] == "csgo.html")){
         console.log("RU4 CSGO");
         getTournaments("/csgo/tournaments", 10, $("#csgoTournamentDiv"));
         getTwitchStreams("Counter-Strike: Global Offensive", 8, $("#csgoTwitchDiv"));
