@@ -164,16 +164,58 @@ h3 {
 }
 
 .button {
-   width: 1080px;
+   width: 100%;
    background-color: #12121C;
    color: #80E2E5;
 }
 
+.button:hover, .button.is-active, .button:active, .button:focus {
+    border-color: #03A9F4;
+    color: #03A9F4;
+}
+
 .dropdown-content{
-    width: 1080px;
+    width: 100%;
     background-color: black;
 }
 
 .dropdown-item{
     color: #80E2E5;
+}
+.dropdown-trigger {
+    width: 100%;
+}
+.dropdown {
+    width: 100%;
+}
+.dropdown.is-active .dropdown-menu{
+    width: 100%;
+    text-align: center;
+}
+
+.is-size-4, .is-size-2 {
+    background-image: linear-gradient(to right, black, #2f070721);
+    padding: 20px;
+    margin: 40px 0px 5px;
+}
+
+@media screen and (max-width: 767px) {
+    .matchupDiv {
+        width: 100%;
+    }
+    .tournamentName {
+        font-size: 25px;
+    }
+    .twitchLink {
+        width: 100%;
+        margin: 3% 0% 0% 0%;
+        padding: 15px;
+    }
+    a.dropdown-item, button.dropdown-item {
+        padding-right: 1rem;
+        white-space: pre-wrap;
+        width: 100%;
+    }
+    
+    
 }
