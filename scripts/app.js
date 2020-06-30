@@ -81,7 +81,7 @@ $(document).ready(function () {
                 var tourneyName = $("<div>");
                 var tName = $("<p>");
                 var tUpcomingSub = $("<p>");
-                tourneyName.addClass("tournamentName contactCard")
+                tourneyName.addClass("tournamentName tourneyCard box")
                 tName.addClass("contactText")
                 tUpcomingSub.addClass("contactText")
                 tName.text(response[index].serie.full_name + " - " + response[index].league.name  + " - " + response[index].name);
@@ -98,7 +98,7 @@ $(document).ready(function () {
                 
                 //Loops through matches for selected tournament and creates div and populates match time, date and winner if available
                 for (i = 0; i < response[index].matches.length; i++) {
-                    var div = $("<div>").addClass("matchupDiv");
+                    var div = $("<div>").addClass("matchupDiv contactCard box");
                     var winner = $("<p>").addClass("winner contactText");
                     var name = $("<p>").addClass("matchupName contactText");
                     var time = $("<p>").addClass("matchupTime contactText");
@@ -198,19 +198,19 @@ $(document).ready(function () {
             var title = $("<h5>");
             var description = $("<p>");
             
-            title.addClass("streamTitle");
+            title.addClass("streamTitle contactText");
             title.text(streamsArr.streams[i].channel.display_name);
             
             description.addClass("streamDescription");
             description.text(streamsArr.streams[i].channel.status);
             
-            anchor.addClass("twitchLink");
+            anchor.addClass("twitchLink contactCard");
             anchor.attr("href", streamsArr.streams[i].channel.url);
             anchor.attr("target", "_blank");
             
-            div.addClass("twitchStreamDiv");
+            div.addClass("twitchStreamDiv contactCard container");
             
-            img.addClass("streamImg");
+            img.addClass("is-4by3");
             img.attr("src", streamsArr.streams[i].preview.medium);
             
             div.append(img);
