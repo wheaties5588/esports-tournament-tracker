@@ -8,26 +8,6 @@ $(document).ready(function () {
     $(".navbar-menu").toggleClass("is-active");  
     });
 
-
-// PANDASCORE AIP
-//Must be a valid api param from PandaScore
-
-// var psPARAM = "/leagues";
-// var psPARAM = "/tournaments";
-// var psPARAM = "/tournaments/upcoming";
-
-//Choose how many items are pulled
-
-
-// Slugs that pull certain games:
-// dota-2
-// rl
-// league-of-legends
-// cs-go
-// cod-mw
-// pubg
-
-
     // Bulma dropdown fix
     var dropdown = $(".dropdown");
     dropdown.on("click", function(event) {
@@ -52,11 +32,9 @@ $(document).ready(function () {
         }).then(function(response) {
             
              // Populate dropdown
-             console.log(response);
              var dropList = $("#dropdownContent");
              
              for(i = 0; i < response.length; i++) {
-                 // console.log(response);
                  var ddItem = $("<a>");
                  ddItem.addClass("dropdown-item");
                  ddItem.text(response[i].serie.full_name + " - " + response[i].league.name  + " - " + response[i].name);
@@ -143,29 +121,12 @@ $(document).ready(function () {
                 
             }
             
-            // function getWinner(response, match) {
-            //     console.log(response.teams);
-                
-            //     for (i = 0; i < response.teams.length; i++) {
-            //         if (match.winner_id == response.teams[i].id)
-            //         console.log("Winner: " + response.teams[i].name)
-            //     }
-                
-                // if (match.winnerId !== null) {
-                    
-                //     console.log(match.winner_id);
-                //     var winner = $("<p>")
-                // }
-                
-           // }
-            
             // Render first series in list on page load
             renderMatches(0);
             
         });
     
 }
-
 
     //TWITCH API
     
@@ -181,7 +142,6 @@ $(document).ready(function () {
             url: twitchStreams,
             headers: {"Client-ID": twitchId}
         }).then(function(res) {
-            console.log(res);
             renderTwitchStreams(res, placement);
         });
    
@@ -223,7 +183,6 @@ $(document).ready(function () {
         
     }
 
-
     // Parse out by URL to run functions
     var loc = window.location.href;
     var locArr = loc.split("/");
@@ -241,7 +200,6 @@ $(document).ready(function () {
         getTournaments("/dota2/tournaments", 10, $("#dotaTournamentDiv"));
         getTwitchStreams("Dota 2", 8, $("#dotaTwitchDiv"));
 
-        
         
     } else if (locArr[locArr.length - 1] == "leagueoflegends.html") {
         
@@ -266,4 +224,3 @@ $(document).ready(function () {
     });
 
 });
-    
