@@ -21,7 +21,7 @@ $(document).ready(function () {
     
     //Get tournaments
     function getTournaments(game, amount, location) {
-        var psKey = "RtNbglsDqX2pPUZIyGNsGqkWqXozcjYULHffv0Okx2HQidOPryc";
+        var psKey = "";
         var psPARAM = game;
         var perPage = amount;
         var psURL = "https://cors-anywhere.herokuapp.com/https://api.pandascore.co" + psPARAM + "?per_page=" + perPage + "&token=" + psKey;
